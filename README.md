@@ -1,5 +1,5 @@
-Mirlo v0.1
-==========
+Mirlo
+=====
 
 Overview
 --------
@@ -13,23 +13,29 @@ What mirlo does:
 
 * Cluster proteins using BLAST and MCL.
 
-* Identify single-copy gene families from the clusters.
+* Identify single-copy gene families (clusters.)
 
 * Align each single-copy family using MAFFT
 
 * Construct a phylogenetic tree of each family using PhyML and compute
 SH-like support values for each branch.
 
-* Compute a 'phylogenetic signal' for each by computing the mean SH-like
-values for all branches in each tree.
-
+* Compute a 'phylogenetic signal' for each family by computing the mean SH-like
+values for all branches in each tree. This step is inspired by Salichos L,
+and Rokas A: Inferring ancient divergences requires genes with strong
+phylogenetic signals. Nature 2013, 497:327–331. The authors show that genes with
+higher phylogenetic signals have phylogenies that are more congruent with the
+species tree. Here, I use SH-like support values instead of bootstrap values
+because they are much faster to compute.
 
 What mirlo does NOT do:
 
 * It does not edit the alignments
 
-* it does not construct a phylogenetic tree from the concatenated
+* It does not construct a phylogenetic tree from the concatenated
 alignment.
+
+Mirlo is a work in progress.
 
 Contact
 -------
@@ -54,7 +60,7 @@ distributions except for ProtTest.
 Installation
 ------------
 
-Uncompress the PhyloGen distribution file somewhere on your computer.
+Uncompress the Mirlo distribution file somewhere on your computer.
 
 Instructions
 ------------
@@ -73,7 +79,7 @@ them, appending the three letter code specified in species_list.csv The
 output of this script is a file containing the renamed
 proteins from all of the input proteims.
 
-1. run an 'all vs. all'  blast of the proteins.
+1. run an 'all vs. all' blast of the proteins.
 
     `makeblastdb -in all.fasta -dbtype prot`
 
@@ -95,7 +101,7 @@ protein from each species and aligns the sequences using mafft.
 PhyML using the best model. PhyML also computes SH-like support values
 for each branch.
 
-1. run evaluate_trees.py computes the average SH-like support value for
+1. run evaluate_trees.py This step computes the average SH-like support value for
 each tree and prints to stdout. the output is tab separated and contains the
 following: the tree file name, the average SH-like support value, the minimum
 support value, a space separated list of all the support values in the tree.
