@@ -49,8 +49,11 @@ Michael Thon mthon@usal.es
 Software Requirements
 ---------------------
 
-- MCL - ProtTest 3.4 https://code.google.com/p/prottest3/ - PhyML -
-mafft - BioPython
+- MCL 
+- ProtTest 3.4 https://code.google.com/p/prottest3/
+- PhyML
+- mafft
+- BioPython
 
 All of the above software packages are available on most linux
 distributions except for ProtTest.
