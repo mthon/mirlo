@@ -4,7 +4,7 @@ Mirlo
 Overview
 --------
 
-Mirlo is protocol and a set of scripts to help automate the construction
+Mirlo is a protocol and a set of scripts to help automate the construction
 of data sets for  multi-gene phylogenetic analyses. It takes whole
 proteomes as input, identifies single-copy gene families, aligns the
 proteins, and evaluates the 'phylogenetic signal' of each alignment.
