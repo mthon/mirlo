@@ -1,6 +1,8 @@
-Mirlo =====
+Mirlo
+=====
 
-Overview --------
+Overview
+--------
 
 Mirlo is protocol and a set of scripts to help automate the construction
 of data sets for  multi-gene phylogenetic analyses. It takes whole
@@ -36,14 +38,16 @@ alignment.
 
 Mirlo is a work in progress.
 
-Contact -------
+Contact
+-------
 
 If you have questions or need help, email me:
 
 Michael Thon mthon@usal.es
 
 
-Software Requirements ---------------------
+Software Requirements
+---------------------
 
 - MCL - ProtTest 3.4 https://code.google.com/p/prottest3/ - PhyML -
 mafft - BioPython
@@ -51,11 +55,13 @@ mafft - BioPython
 All of the above software packages are available on most linux
 distributions except for ProtTest.
 
-Installation ------------
+Installation
+------------
 
 Uncompress the Mirlo distribution file somewhere on your computer.
 
-Instructions ------------
+Instructions
+------------
 
 You should have one fasta format file of proteins for each species that
 you plan to include in your analysis. Put all of the fasta files into
