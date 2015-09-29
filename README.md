@@ -72,8 +72,14 @@ the the same directory.
 
 1. Prepare the file species_list.csv. Column 1 should contain a three
 letter code for each species. Column 2 contains the genus and species of
-each taxon in your analysis.  Column 3 contains the file name of the
+each taxon in your analysis.  Column 4 is a comment line in which you can inclue any info you like. Column 4 contains the file name of the
 fasta file that you put in the 'fasta' directory.
+Here is an example:
+
+	ABR,Alternaria brassicicola,Dothidiomycetes,Alternaria_brassicicola_proteins.fasta
+	ANI,Aspergillus nidulans,Eurotiomycetes,aspergillus_nidulansfgsca4.fasta
+	CGR,Colletotrichum graminicola,Sordariomycetes,colletotrichum_graminicola.fasta
+	SAC,Saccharomyces cerevisiae,Saccharomycetes,yeast.fasta
 
 1. run rename.py.  This script reads the proteins in each file and
 renames them, appending the three letter code specified in
