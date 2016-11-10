@@ -7,6 +7,7 @@ import subprocess
 from Queue import Queue
 from threading import Thread
 from time import sleep
+import StringIO
 
 from Bio import SeqIO
 from Bio.AlignIO import convert
@@ -64,42 +65,44 @@ def parse_fasta(fasta_dir):
 def parse_clusters(seqs, clust_file, num_spp):
     print 'finding clusters'
     cluster_count = 0
-    file_list = []
+    file_list  = []
+    #file_names = []
 
-    for row in csv.reader(open(clust_file), delimiter=' '):
+    for row in csv.reader(open(clust_file), delimiter='\t'):
+
+        if row[0] == "":
+            continue
+
         clust_id = row[0].replace(':','')
         counts = {}
         include = True
-        for seq_name in row[1:]:
-            if seq_name not in seqs:
-                sys.exit('%s not in fasta files' % seq_name)
-            seq_source = seqs[seq_name].source
+        seqs_to_save = []
 
-            if not seq_source in counts:
-                counts[seq_source] = 0
-
-            counts[seq_source] += 1
-
-        for seq_source, count in counts.iteritems():
-            if count > 1:
+        for batch in row[1:]:
+            seq_names = batch.split(',')
+            if len(seq_names) != 1:
                 include = False
-        if len(counts.keys()) < num_spp:
-            include = False
+            if len(seq_names[0]) == 0:
+                include = False
+
+            seqs_to_save.extend(seq_names)
 
         if include:
-            cluster_count += 1
-            #print 'saving cluster %s' % clust_id
+
+            print 'saving cluster %s' % clust_id
             out_file = '%s/%s.fasta' % (opts.out_dir, clust_id)
             out_seqs = []
 
-            for seqid in sorted(row[1:]):
-                seq = seqs[seqid]
-                seq.id = seq.id.split('_')[0]
+            for seqid in seqs_to_save:
+                seq = seqs[seqid.strip()]
+
+                seq.id = os.path.splitext(seq.source)[0]
                 out_seqs.append(seq)
 
             SeqIO.write(out_seqs, out_file, 'fasta')
             file_list.append(out_file)
-    print 'Done. Found %s candidate clusters.' % cluster_count
+
+    print 'Done. Found %s candidate clusters.' % str(len(file_list))
     return file_list
 
 def make_alignments(infiles, prottest, work_dir, numthreads):
@@ -120,7 +123,6 @@ def make_alignments(infiles, prottest, work_dir, numthreads):
         out_h.close()
 
         prottest_com = 'java -jar %s -i %s -threads %s -log disabled -JTT -MtREV -DCMut -WAG -RtREV -CpREV -VT -Blosum62 -MtMam -LG -Dayhoff' % (prottest, out_file, numthreads)
-
 
         prottest_output = subprocess.check_output(prottest_com.split(' '), shell=False)
         model = ''
