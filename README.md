@@ -56,14 +56,7 @@ Uncompress the Mirlo distribution file somewhere on your computer.
 Instructions
 ------------
 
-You should have one file of protein sequences in fasta format for each species that you plan to include in your analysis. Put all of the fasta files into
-the one directory. The protein sequence names should be prepended with a short code to identify each species followed by an underscore, for example GLRG_123456. If your sequences don't have this, you can add one on the commend line like this:
-
-`sed 's/>/>GLRG_/' my_proteins.fasta >renamed_proteins.fasta`
-
-just replace GLRG with a unique code for each species.
-
-
+You should have one file of protein sequences in fasta format for each species that you plan to include in your analysis. The file names should be short as they will be used during the mirlo analysis to indicate each species in the multiple sequence alignments.
 
 1. run OrthoFinder.
 

@@ -22,8 +22,8 @@ def parse_cli():
     parser.add_argument('-i', type=str, dest='seq_dir', default='fasta',
                         help='directory containing fasta files of proteins')
 
-    parser.add_argument('-c', type=str, dest='clust_file', default='all.clusters',
-                        help='protein clusters file from OrthoFinder or OrthoMCL')
+    parser.add_argument('-c', type=str, dest='clust_file', default='Orthogroups.csv',
+                        help='the Orthogroups.csv file from OrthoFinder')
 
     parser.add_argument('-p', type=str, dest='prottest',
                         help='path to prottest jar file')
