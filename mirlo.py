@@ -43,7 +43,7 @@ def parse_cli():
 def parse_fasta(fasta_dir):
 
     seqs = {}
-    num_spp = 0
+    num_spp = 0 # test
 
     if not os.path.isdir(fasta_dir):
         sys.exit('Error: %s is not a directory' % fasta_dir)
